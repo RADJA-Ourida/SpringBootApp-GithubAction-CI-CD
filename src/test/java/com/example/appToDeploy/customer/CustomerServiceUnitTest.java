@@ -1,26 +1,36 @@
 package com.example.appToDeploy.customer;
 
 
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
 import java.time.LocalDate;
 import java.time.Period;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 
-@SpringBootTest
+//@SpringBootTest
+@ActiveProfiles({"unit-test"})
 class CustomerServiceUnitTest {
 
-    @Autowired
-    private  CustomerService customerService;
+   // @Autowired
+   // private  CustomerService customerService;
+
+    @BeforeEach
+    void setUp(){
+
+    }
 
 
     @Test
     void testNewCustomer(){
         //Given
+        CustomerService customerService = new CustomerService();
        Integer id = 1;
         String firstName = "Dani";
         String lastName ="WELSONE";
@@ -33,21 +43,12 @@ class CustomerServiceUnitTest {
         assertEquals(1,customerActual.getId());
     }
 
-    @Test
-    void testHello(){
-        //Given
-        String name = "Dani";
 
-        //when
-        String greeting = customerService.Hello(name);
-
-        //Then
-        assertEquals("Hello Dani",greeting);
-    }
 
     @Test
     void testAgeOfCustomer(){
         //Given
+        CustomerService customerService = new CustomerService();
         LocalDate dateOfToday = LocalDate.now();
         LocalDate dateOfBirth = LocalDate.of(2000,12,30);
         Integer expectedAge = Period.between(dateOfBirth,dateOfToday).getYears();

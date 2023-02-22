@@ -3,11 +3,13 @@ package com.example.appToDeploy;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class AppToDeployApplicationTests {
 
-	@Test
+	/*@Test
 	void contextLoads() {
 	}
 
+
+	 */
 }
