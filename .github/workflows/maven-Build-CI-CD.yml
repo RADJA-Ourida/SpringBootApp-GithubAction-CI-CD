@@ -37,7 +37,8 @@ jobs:
       run: mvn test
       
     - name: Run integration tests
-      run:  mvn verify -Pintegration-test 
+      run:  mvn verify -P integration-test -Dtest=*IT  #specify the files wich end with'IT' to be run otherwise it runs even the unit test
+
         
 
 
