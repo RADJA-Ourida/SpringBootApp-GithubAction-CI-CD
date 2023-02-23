@@ -61,93 +61,25 @@
                                 <exclude>**/*Test.java</exclude>
                                 <exclude>**/*Tests.java</exclude>
                             </excludes>
-                            <systemPropertyVariables>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <spring.profiles.active>integration</spring.profiles.active>
-                            </systemPropertyVariables>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>integration-tests</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+                         </configuration>
+                         <executions>
+                             <execution>
+                                 <id>integration-tests</id>
+                                 <goals>
+                                     <goal>integration-test</goal>
+                                     <goal>verify</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>
 
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unit-tests</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                                <configuration>
-                                    <excludes>
-                                        <exclude>**/*IT.java</exclude>
-                                    </excludes>
-                                    <systemPropertyVariables>
-                                        <!--suppress UnresolvedMavenProperty -->
-                                        <spring.profiles.active>integration</spring.profiles.active>
-                                    </systemPropertyVariables>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-
-                </plugins>
-            </build>
-            <properties>
-                <test.profile>integration</test.profile>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>unit-test</id>
-            <build>
-                <plugins>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <executions>
-                            <execution>
-
-
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-
-                                <configuration>
-                                    <excludes>
-                                        <exclude>**/*IT.java</exclude>
-                                        <exclude>**/*Tests.java</exclude>
-                                    </excludes>
-                                    <systemPropertyVariables>
-                                        <!--suppress UnresolvedMavenProperty -->
-                                        <spring.profiles.active>${test.profile}</spring.profiles.active>
-                                    </systemPropertyVariables>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-
-            <properties>
-                <test.profile>unit</test.profile>
-            </properties>
-        </profile>
+                 </plugins>
+             </build>
+             <properties>
+                 <test.profile>integration</test.profile>
+             </properties>
+         </profile>
     </profiles>
-
 
     <build>
         <plugins>
@@ -163,6 +95,28 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*IT.java</exclude>
+                                <exclude>**/*Tests.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
         </plugins>
         <finalName>customerApp</finalName>
     </build>
