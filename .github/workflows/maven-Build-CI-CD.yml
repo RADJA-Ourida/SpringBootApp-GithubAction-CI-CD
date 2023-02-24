@@ -57,7 +57,11 @@ jobs:
         #project_id: ${{ secrets.GCP_PROJECT_ID }}
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
     - name: Check secret value
-      run: echo ${{ secrets.GCP_SA_KEY }}
+      run: |
+       echo "Printing contents ofproject id..."
+       echo  ${{ secrets.GCP_PROJECT_ID  }}
+       echo "Printing contents of key file..."
+       echo ${{ secrets.GCP_SA_KEY }}
 
         
     - name: Authenticate with gcloud1
