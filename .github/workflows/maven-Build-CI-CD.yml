@@ -48,8 +48,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@main
+    #- name: Set up Google Cloud SDK
+     # uses: google-github-actions/setup-gcloud@main
     - name: Setup gcloud auth
       uses: google-github-actions/auth@v1
       with:
