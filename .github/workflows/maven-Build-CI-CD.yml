@@ -56,9 +56,20 @@ jobs:
        credentials_json: ${{ secrets.GCP_SA_KEY }}
         #project_id: ${{ secrets.GCP_PROJECT_ID }}
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
+        
+    - name: Authenticate with gcloud1
+      run: |
+       echo "Checking path to key file..."
+       ls -l ${{ secrets.GCP_SA_KEY }}
+       echo "Printing contents of key file..."
+       cat ${{ secrets.GCP_SA_KEY }}
+       echo "Activating service account..."
+       gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
+
        
-    - name: Authenticate with gcloud
+    - name: Authenticate with gcloud2
       run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}  #activate the service account using the credentials stored in the secret.
+
 
     - name: Build and push Docker image
       run: |
