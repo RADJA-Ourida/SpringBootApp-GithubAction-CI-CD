@@ -49,7 +49,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
    
-    - name: Setup_gcloud_auth
+    - name: auth
       uses: google-github-actions/auth@v1
       with:
        credentials_json: ${{ secrets.GCP_SA_KEY }}
@@ -67,8 +67,10 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-image:${{ github.sha }} .
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-image:${{ github.sha }}
+        docker build -t gcr.io/${{  steps.auth.outputs.project_id }}/my-image:${{ github.sha }} .
+        echo : "The image is built*****************************************************"
+        docker push gcr.io/${{  steps.auth.outputs.project_id }}/my-image:${{ github.sha }}
+        echo : "The image is pushed***********************************************"
     
 
 
