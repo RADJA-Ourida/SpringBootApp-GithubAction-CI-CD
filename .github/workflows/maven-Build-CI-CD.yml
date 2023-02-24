@@ -60,6 +60,7 @@ jobs:
       run: |
        echo "Printing contents ofproject id..."
        echo  ${{ secrets.GCP_PROJECT_ID  }}
+       cat  ${{ secrets.GCP_PROJECT_ID  }}
        echo "Printed contents ofproject id..."
        echo "Printing contents of key file..."
        cat ${{ secrets.GCP_SA_KEY }}
