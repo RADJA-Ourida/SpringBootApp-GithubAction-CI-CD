@@ -56,18 +56,15 @@ jobs:
        credentials_json: ${{ secrets.GCP_SA_KEY }}
         #project_id: ${{ secrets.GCP_PROJECT_ID }}
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
-    - name: Print environment variables
-      run: printenv
-    - name: Print secret contents
-      run: echo "${{  steps.Setup_gcloud_auth.outputs.project_id }}" 
+ 
 
 
     - name: Check secret value
       run: |
-       echo "Printing contents of  secrets.GCP_PROJECT_ID..."
-       echo  ${{ secrets.GCP_PROJECT_ID  }}
-       cat  ${{ secrets.GCP_PROJECT_ID  }}
-       echo "Printed contents of  secrets.GCP_PROJECT_ID..."
+       echo "Printing contents of  GCP_PROJECT_ID..."
+       echo  ${{ steps.Setup_gcloud_auth.outputs.project_id  }}
+       cat  ${{ steps.Setup_gcloud_auth.outputs.project_id }}
+       echo "Printed contents of  steps.Setup_gcloud_auth.outputs.project_id..."
        echo "Printing contents ofsecrets.GCP_SA_KEY ..."
        cat ${{ secrets.GCP_SA_KEY }}
        echo ${{ secrets.GCP_SA_KEY }}
