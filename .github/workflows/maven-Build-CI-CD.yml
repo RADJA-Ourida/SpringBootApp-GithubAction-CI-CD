@@ -60,7 +60,7 @@ jobs:
       run: printenv
 
     - name: Check secret value
-      run: 
+      run: |
        echo "Printing contents of  secrets.GCP_PROJECT_ID..."
        echo  ${{ secrets.GCP_PROJECT_ID  }}
        cat  ${{ secrets.GCP_PROJECT_ID  }}
