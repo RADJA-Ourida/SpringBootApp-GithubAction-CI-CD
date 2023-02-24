@@ -48,41 +48,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    #- name: Set up Google Cloud SDK
-     # uses: google-github-actions/setup-gcloud@main
+   
     - name: Setup_gcloud_auth
       uses: google-github-actions/auth@v1
       with:
        credentials_json: ${{ secrets.GCP_SA_KEY }}
         #project_id: ${{ secrets.GCP_PROJECT_ID }}
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
- 
-
-
-    - name: Check secret value
-      run: |
-       echo "Printing contents of  GCP_PROJECT_ID..."
-       echo  ${{ steps.Setup_gcloud_auth.outputs.project_id  }}
-       cat  ${{ steps.Setup_gcloud_auth.outputs.project_id }}
-       echo "Printed contents of  steps.Setup_gcloud_auth.outputs.project_id..."
-       echo "Printing contents ofsecrets.GCP_SA_KEY ..."
-       cat ${{ secrets.GCP_SA_KEY }}
-       echo ${{ secrets.GCP_SA_KEY }}
-       echo " End of Printing ..."
-
         
-    - name: Authenticate with gcloud1
-      run: |
-       echo "Checking path to key file..."
-       ls -l ${{ secrets.GCP_SA_KEY }}
-       echo "Printing contents of key file..."
-       cat ${{ secrets.GCP_SA_KEY }}
-       echo "Activating service account..."
-       gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}
-
+    - name: Setup gcloud CLI
+      uses: google-github-actions/setup-gcloud@v0.3.0
+      with:
+        project_id: ${{ steps.auth.outputs.project_id }}
        
-    - name: Authenticate with gcloud2
-      run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}  #activate the service account using the credentials stored in the secret.
+   # - name: Authenticate with gcloud2
+    #  run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}  #activate the service account using the credentials stored in the secret.
 
 
     - name: Build and push Docker image
