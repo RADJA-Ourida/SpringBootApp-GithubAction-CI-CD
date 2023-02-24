@@ -1,0 +1,3 @@
+com\example\appToDeploy\customer\CustomerControllerIT.class
+com\example\appToDeploy\AppToDeployApplicationTests.class
+com\example\appToDeploy\customer\CustomerServiceUnitTest.class

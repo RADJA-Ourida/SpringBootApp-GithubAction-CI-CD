@@ -1,0 +1,4 @@
+com\example\appToDeploy\customer\Customer.class
+com\example\appToDeploy\customer\CustomerService.class
+com\example\appToDeploy\AppToDeployApplication.class
+com\example\appToDeploy\customer\CustomerController.class

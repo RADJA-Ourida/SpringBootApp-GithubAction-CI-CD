@@ -56,7 +56,6 @@
                             <includes>
                                 <include>**/*IT.java</include>
                             </includes>
-
                             <excludes>
                                 <exclude>**/*Test.java</exclude>
                                 <exclude>**/*Tests.java</exclude>
