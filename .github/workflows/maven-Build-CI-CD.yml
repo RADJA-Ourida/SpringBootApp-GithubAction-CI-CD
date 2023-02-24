@@ -63,7 +63,7 @@ jobs:
     - name: Setup gcloud CLI
       uses: google-github-actions/setup-gcloud@v0.3.0
       with:
-        project_id: ${{ steps.auth.outputs.project_id }}
+        project_id: ${{ env.PROJECT_ID }}  #${{ steps.auth.outputs.project_id }}
        
    # - name: Authenticate with gcloud2
     #  run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}  #activate the service account using the credentials stored in the secret.
@@ -71,9 +71,9 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t gcr.io/${{  steps.auth.outputs.project_id }}/my-image:${{ github.sha }} .
+        docker build -t gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }} .
         echo : "The image is built*****************************************************"
-        docker push gcr.io/${{  steps.auth.outputs.project_id }}/my-image:${{ github.sha }}
+        docker push gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }}
         echo : "The image is pushed***********************************************"
     
 
