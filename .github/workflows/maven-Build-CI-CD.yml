@@ -56,6 +56,9 @@ jobs:
        credentials_json: ${{ secrets.GCP_SA_KEY }}
         #project_id: ${{ secrets.GCP_PROJECT_ID }}
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
+    - name: Check secret value
+      run: echo ${{ secrets.GCP_SA_KEY }}
+
         
     - name: Authenticate with gcloud1
       run: |
