@@ -62,6 +62,7 @@ jobs:
        echo  ${{ secrets.GCP_PROJECT_ID  }}
        echo "Printing contents of key file..."
        echo ${{ secrets.GCP_SA_KEY }}
+       echo " End of Printing ..."
 
         
     - name: Authenticate with gcloud1
