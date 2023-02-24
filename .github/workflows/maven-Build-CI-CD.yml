@@ -58,6 +58,9 @@ jobs:
         #service_account_key: ${{ secrets.GCP_SA_KEY }}
     - name: Print environment variables
       run: printenv
+    - name: Print secret contents
+      run: echo "${{ secrets.GCP_SA_KEY }}" | base64 --decode
+
 
     - name: Check secret value
       run: |
