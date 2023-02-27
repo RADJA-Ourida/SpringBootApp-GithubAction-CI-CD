@@ -66,6 +66,8 @@ jobs:
        echo ${{ secrets.GCP_PROJECT_ID }}
        echo : " env.PROJECT_ID is "
        echo ${{ env.PROJECT_ID }} 
+       echo : "the version of gcloud is :::"
+       echo gcloud --version
 
         
     - name: Setup gcloud CLI
