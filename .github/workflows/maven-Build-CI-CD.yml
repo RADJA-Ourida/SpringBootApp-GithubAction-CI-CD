@@ -91,7 +91,8 @@ jobs:
           
      - name: connect to GKE Cluster
        run: |
-          gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONe }}
+          #gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONe }}
+          gcloud container clusters get-credentials autopilot-cluster-2 --region europe-central2 --project productdatapipeline
           
 
           
