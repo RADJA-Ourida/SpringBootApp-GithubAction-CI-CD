@@ -73,6 +73,18 @@ jobs:
       run: |
         docker build -t gcr.io/${{ env.PROJECT_ID }}/my-image:${{ github.sha }} .
         docker push gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }}
+        
+  deploy-to-GKCluster:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+     - name: Debug
+        run:|
+          echo "Hello from deployement"
+    
+     
+   
+     
     
 
 
