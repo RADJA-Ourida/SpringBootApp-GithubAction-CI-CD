@@ -75,6 +75,11 @@ jobs:
       uses: google-github-actions/setup-gcloud@v0.3.0
       with:
         project_id: ${{ env.PROJECT_ID }}  #${{ steps.auth.outputs.project_id }}
+        
+    # Configure Docker to use the gcloud command-line tool as a credential
+    # helper for authentication
+    - run: |-
+        gcloud --quiet auth configure-docker
       
        
    # - name: Authenticate with gcloud2
