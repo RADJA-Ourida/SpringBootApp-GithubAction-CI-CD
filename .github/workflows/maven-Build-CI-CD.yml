@@ -77,24 +77,27 @@ jobs:
         docker build -t gcr.io/${{ env.PROJECT_ID }}/my-image:${{ github.sha }} .
         docker push gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }}
         
-  deploy-to-GKCluster:
+        
+    - name: connect to GKE Cluster
+      run: |
+          #gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONe }}
+          gcloud container clusters get-credentials autopilot-cluster-2 --region europe-central2 --project productdatapipeline
+          
+
+        
+  #deploy-to-GKCluster:
   
-    needs: build-DockerImg-push-to-GCR
-    runs-on: ubuntu-latest
-    steps:
-     - uses: actions/checkout@v3
+  #  needs: build-DockerImg-push-to-GCR
+   # runs-on: ubuntu-latest
+    #steps:
+     #- uses: actions/checkout@v3
      
      #- name : install Google cloud CLI
       # run: |
           #gcloud components install kubectl  # kubectl allows to communicate with kubernetes 
      #     sudo apt-get install kubectl
           
-     - name: connect to GKE Cluster
-       run: |
-          #gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONe }}
-          gcloud container clusters get-credentials autopilot-cluster-2 --region europe-central2 --project productdatapipeline
-          
-
+   
           
 
     
