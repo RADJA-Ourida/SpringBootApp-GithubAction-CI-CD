@@ -19,6 +19,8 @@ env:
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
   IMAGE_NAME: appimg
   TAG: ${{ github.sha }}
+  GKE_CLUSTER: autopilot-cluster-2
+  GKE_ZONE: europe-central2
 
 jobs:
 
@@ -46,7 +48,7 @@ jobs:
       run:  mvn verify -P integration-test -Dtest=*IT  #specify the files wich end with'IT' to be run otherwise it runs even the unit test
 
   
-  build-and-push:
+  build-DockerImg-push-to-GCR:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -75,17 +77,25 @@ jobs:
         docker build -t gcr.io/${{ env.PROJECT_ID }}/my-image:${{ github.sha }} .
         docker push gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }}
         
-  #deploy-to-GKCluster:
-   # needs: build-and-push
-   # runs-on: ubuntu-latest
-   # steps:
-   #  - name: Debug
-   #     run:|
-   #       echo "Hello from deployement"
+  deploy-to-GKCluster:
+  
+    needs: build-DockerImg-push-to-GCR
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v3
+     
+     - name : install Google cloud CLI
+       run: |
+          gcloud components install kubectl  # kubectl allows to communicate with kubernetes 
+          
+     - name: connect to GKE Cluster
+       run: |
+          gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONe }}
+          
+
+          
+
     
-     
-   
-     
     
 
 
