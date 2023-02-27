@@ -84,10 +84,10 @@ jobs:
     steps:
      - uses: actions/checkout@v3
      
-     - name : install Google cloud CLI
-       run: |
+     #- name : install Google cloud CLI
+      # run: |
           #gcloud components install kubectl  # kubectl allows to communicate with kubernetes 
-          sudo apt-get install kubectl
+     #     sudo apt-get install kubectl
           
      - name: connect to GKE Cluster
        run: |
