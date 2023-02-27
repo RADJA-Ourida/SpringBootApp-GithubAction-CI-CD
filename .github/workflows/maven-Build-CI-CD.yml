@@ -86,7 +86,8 @@ jobs:
      
      - name : install Google cloud CLI
        run: |
-          gcloud components install kubectl  # kubectl allows to communicate with kubernetes 
+          #gcloud components install kubectl  # kubectl allows to communicate with kubernetes 
+          sudo apt-get install kubectl
           
      - name: connect to GKE Cluster
        run: |
