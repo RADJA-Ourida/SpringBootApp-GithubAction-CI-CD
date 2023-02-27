@@ -20,10 +20,10 @@ env:
   TAG: ${{ github.sha }}
 
 jobs:
+
+
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: check out code 
       uses: actions/checkout@v3
@@ -56,42 +56,22 @@ jobs:
       with:
        credentials_json: ${{ env.GCP_SA_KEY }}
        export_default_credentials: true
-        #project_id: ${{ secrets.GCP_PROJECT_ID }}
-        #service_account_key: ${{ secrets.GCP_SA_KEY }}
-        
-    - name: Debug
-      run: |
-       echo ${{ env.PROJECT_ID }}
-       echo : "secrets.GCP_PROJECT_ID   is "
-       echo ${{ secrets.GCP_PROJECT_ID }}
-       echo : " env.PROJECT_ID is "
-       echo ${{ env.PROJECT_ID }} 
-       echo : "the value of github.sha"
-       echo "SHA: ${{ github.sha }}"
-
-
-        
+    
+            
     - name: Setup gcloud CLI
       uses: google-github-actions/setup-gcloud@v0.3.0
       with:
-        project_id: ${{ env.PROJECT_ID }}  #${{ steps.auth.outputs.project_id }}
-        
-    # Configure Docker to use the gcloud command-line tool as a credential
-    # helper for authentication
-    - run: |-
+        project_id: ${{ env.PROJECT_ID }} 
+  
+    #Set up the Docker credential helper to use gcloud as the authentication method.
+    - name: Configure Docker to authenticate with the GCR
+      run: |-
         gcloud --quiet auth configure-docker
-      
-       
-   # - name: Authenticate with gcloud2
-    #  run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SA_KEY }}  #activate the service account using the credentials stored in the secret.
-
 
     - name: Build and push Docker image
       run: |
-        docker build -t gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }} .
-        echo : "The image is built*****************************************************"
+        docker build -t gcr.io/${{ env.PROJECT_ID }}/my-image:${{ github.sha }} .
         docker push gcr.io/${{  env.PROJECT_ID }}/my-image:${{ github.sha }}
-        echo : "The image is pushed***********************************************"
     
 
 
