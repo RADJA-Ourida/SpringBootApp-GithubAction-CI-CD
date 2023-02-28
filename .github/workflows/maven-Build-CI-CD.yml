@@ -92,8 +92,8 @@ jobs:
     - name: create deployment
       run: |
         kubectl create deployment ${{ env.Name_APP_ON_SERVER }} --image=gcr.io/${{  env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-        kubectl scale deployment ${{ env.Name_APP_ON_SERVER }} --replicas=3
-        kubectl autoscale deployment ${{ env.Name_APP_ON_SERVER }}  --cpu-percent=90 --min=1 --max=5
+      #  kubectl scale deployment ${{ env.Name_APP_ON_SERVER }} --replicas=3
+      #  kubectl autoscale deployment ${{ env.Name_APP_ON_SERVER }}  --cpu-percent=90 --min=1 --max=5
 
     - name: expose to the internet 
       run: | 
