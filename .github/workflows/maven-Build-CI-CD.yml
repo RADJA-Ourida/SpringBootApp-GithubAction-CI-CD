@@ -93,11 +93,11 @@ jobs:
       run: |
         kubectl create deployment ${{ env.Name_APP_ON_SERVER }} --image=gcr.io/${{  env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
         kubectl scale deployment ${{ env.Name_APP_ON_SERVER }} --replicas=3
-        kubectl autoscale deployment ${{ env.Name_APP_ON_SERVER }}  --cpu-percent=80 --min=1 --max=5
+        kubectl autoscale deployment ${{ env.Name_APP_ON_SERVER }}  --cpu-percent=90 --min=1 --max=5
 
     - name: expose to the internet 
       run: | 
-         kubectl expose deployment ${{ env.Name_APP_ON_SERVER }}  --type LoadBalancer --port 80 --target-port 9090  ## The option --type LoadBalancerallows you to create a Compute Engine load balancer for your container. The option --portinitializes public port 80 on the Internet and the option --target-portroutes traffic to port 8080 of the application.
+         kubectl expose deployment ${{ env.Name_APP_ON_SERVER }}  --type LoadBalancer --port 80 --target-port 8000  ## The option --type LoadBalancerallows you to create a Compute Engine load balancer for your container. The option --portinitializes public port 80 on the Internet and the option --target-portroutes traffic to port 8080 of the application.
     
     - name: inspect the service Name_APP_ON_SERVER 
       run: |
