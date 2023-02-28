@@ -21,7 +21,7 @@ env:
   TAG: ${{ github.sha }}
   GKE_CLUSTER: autopilot-cluster-2
   GKE_ZONE: europe-central2
-  Name_APP_ON_SERVER: app-on-line1
+  Name_APP_ON_SERVER: app-on-line2
 
 jobs:
 
