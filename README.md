@@ -29,7 +29,9 @@ This small application to perform the CI/CD and the deployement to Google Cloud 
       
 ## The end pointes of the application on Docker : 
    http://localhost:9090/customer/age
+   
    http://localhost:9090/customer/hello/Dani
+   
    http://localhost:9090/customer/newCustomer //Perform this from postman
    
    
