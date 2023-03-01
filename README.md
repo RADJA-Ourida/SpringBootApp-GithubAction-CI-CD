@@ -20,7 +20,7 @@ This small application to perform the CI/CD and the deployement to Google Cloud 
 
 
 ## To dockerise this application in Local: 
-  Two ways to do this : 
+  Two ways to do this:
   - With Docker-compose, run this on terminal :  
   
         ./mvnw clean package -Dskiptest
