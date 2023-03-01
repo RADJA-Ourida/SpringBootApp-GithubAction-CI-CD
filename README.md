@@ -19,11 +19,16 @@ This small application to perform the CI/CD and the deployement to Google Cloud 
 ## To dockerise this application in Local: 
   Two ways to do this : 
   - With Docker-compose, run this on terminal :  
+  
         ./mvnw clean package -Dskiptest
-        docker compose up  
+        
+        docker compose up 
+        
   - with Dockerfile only : 
       ./mvnw clean package -Dskiptest
+      
       docker build -t appimg .  //To create the image and store it in Docker 
+      
       docker run -p 9090:8000 appimg
       
       
@@ -39,6 +44,7 @@ This small application to perform the CI/CD and the deployement to Google Cloud 
 ## TO Deploy in Google Cloud Platform 
 
 The workflow is trigerred automaticly on each push to the main branch. 
+
 If the deployement is successfuly done, we find in GKE -> services & Ingres the URL to our application
 
    
