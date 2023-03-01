@@ -14,6 +14,9 @@ This small application to perform the CI/CD and the deployement to Google Cloud 
 ## To run this application in local machine: 
  - clone the project and run it
  - On the btowser past this :   http://localhost:8000/customer/age 
+## To run unit tests and Integration tests, paste this on the terminal : 
+ - Unit tests:  mvn test
+ - Integration tests:  mvn verify -P integration-test -Dtest=*IT
 
 
 ## To dockerise this application in Local: 
