@@ -15,13 +15,13 @@ on:
     branches: [ "main" ]
   workflow_dispatch: 
 env:
-  PROJECT_ID: productdatapipeline #${{ secrets.GCP_PROJECT_ID }}
+  PROJECT_ID: productdatapipeline
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
   IMAGE_NAME: appimg
   TAG: ${{ github.sha }}
   GKE_CLUSTER: autopilot-cluster-2
   GKE_ZONE: europe-central2
-  Name_APP_ON_SERVER: app-on-line
+  Name_APP_ON_SERVER: app-on-line2
 
 jobs:
 
@@ -48,20 +48,15 @@ jobs:
     - name: Run integration tests
       run:  mvn verify -P integration-test -Dtest=*IT  #specify the files wich end with'IT' to be run otherwise it runs even the unit test
 
-  
-  build-DockerImg-push-to-GCR:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-   
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
+
+ ######################### build-DockerImg-push-to-GCR:
+
+    - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1
       with:
        credentials_json: ${{ env.GCP_SA_KEY }}
        export_default_credentials: true
-    
+
             
     - name: Setup gcloud CLI
       uses: google-github-actions/setup-gcloud@v0.3.0
